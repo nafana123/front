@@ -4,7 +4,8 @@ import babel from '@rolldown/plugin-babel'
 
 export default defineConfig({
   server: {
-    allowedHosts: 'all'
+    host: true,
+    allowedHosts: ['.ngrok-free.app']
   },
   plugins: [
     react(),
