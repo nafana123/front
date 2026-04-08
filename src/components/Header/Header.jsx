@@ -11,31 +11,59 @@ export default function Header() {
     navigate("/");
   };
 
+  const handleNavigate = (path) => () => navigate(path);
+
   return (
     <header className="header">
-      <div className="header-container">
-        <div className="logo">
-          <span className="logo-icon">T</span>
-          <span className="logo-text">TOURNIFY</span>
+      <div className="header-inner">
+        <div 
+          className="header-left" 
+          onClick={handleNavigate("/")}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && handleNavigate("/")()}
+        >
+          <div className="logo-text">
+            TOURNI<span className="logo-accent">FY</span>
+          </div>
         </div>
 
-        <div className="divider">|</div>
-
-        <nav className="nav-menu">
-          <a href="#" className="nav-link">My Tournaments</a>
-          <a href="#" className="nav-link">Rewards</a>
-          <a href="#" className="nav-link">Support</a>
+        <nav className="header-center">
+          <button onClick={handleNavigate("/tournaments")}>Tournaments</button>
+          <button onClick={handleNavigate("/rewards")}>Rewards</button>
+          <button onClick={handleNavigate("/leaderboard")}>Leaderboard</button>
         </nav>
 
-        {!isAuthenticated ? (
-          <button className="login-btn" onClick={() => navigate("/login")}>
-            Войти
-          </button>
-        ) : (
-          <button className="login-btn logout-btn" onClick={handleLogout}>
-            Выйти
-          </button>
-        )}
+        <div className="header-right">
+          {!isAuthenticated ? (
+            <>
+              <button
+                className="ghost-btn"
+                onClick={handleNavigate("/login")}
+              >
+                Log in
+              </button>
+
+              <button
+                className="primary-btn"
+                onClick={handleNavigate("/register")}
+              >
+                Get Started
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="user-block">
+                <div className="avatar" />
+                <span>Account</span>
+              </div>
+
+              <button className="ghost-btn" onClick={handleLogout}>
+                Logout
+              </button>
+            </>
+          )}
+        </div>
       </div>
     </header>
   );

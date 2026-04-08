@@ -79,7 +79,7 @@ const RegisterPage = () => {
           <div className="stats-banner">
             <div className="stat-item">
               <span className="stat-number">1000+</span>
-              <span className="stat-label">Активных турниров</span>
+              <span className="stat-label">Проведённых турниров</span>
             </div>
             <div className="stat-item">
               <span className="stat-number">50K+</span>
